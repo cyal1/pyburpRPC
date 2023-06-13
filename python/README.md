@@ -1,5 +1,8 @@
 # BcryptRpcServer
 
+## install 
+pip install BcryptRpcServer
+
 ## Basic
 ```python
 import BcryptRpcServer 
