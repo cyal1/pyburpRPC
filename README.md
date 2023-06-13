@@ -1,4 +1,11 @@
 # BcryptRpcServer
+
+## python
+
+### install
+pip install BcryptRpcServer
+
+### example
 ```python
 import BcryptRpcServer 
 
