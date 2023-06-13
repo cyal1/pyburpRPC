@@ -41,7 +41,7 @@ def encrypt(arg):
 # device = frida.get_usb_device()
 device = frida.get_device_manager().add_remote_device('127.0.0.1:27042')
 
-# pid = device.spawn(["com.wifi.reader.jinshu"])
+# pid = device.spawn(["com.example.www"])
 # device.resume(pid)
 # time.sleep(1)  # Without it Java.perform silently fails
 # session = device.attach(pid)
