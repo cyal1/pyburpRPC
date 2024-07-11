@@ -44,7 +44,7 @@ def decrypt(i, s):
         disc = result.get("description")
         print(disc)
         return disc
-    r = json.dumps(result.get("value"))
+    r = result.get("value")
     print(f"result{type(r)}: ", r)
     return r
 
