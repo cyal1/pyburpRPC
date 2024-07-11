@@ -30,6 +30,11 @@ class CallFuncServicer(pb2_grpc.CallFuncServiceServicer):
                 any_obj = any_pb2.Any()
                 any_obj.Pack(value)
                 response = pb2.Response(res=any_obj)
+            elif isinstance(result, bool):
+                value = BoolValue(value=result)
+                any_obj = any_pb2.Any()
+                any_obj.Pack(value)
+                response = pb2.Response(res=any_obj)
             elif isinstance(result, int):
                 value = Int64Value(value=result)
                 any_obj = any_pb2.Any()
@@ -37,11 +42,6 @@ class CallFuncServicer(pb2_grpc.CallFuncServiceServicer):
                 response = pb2.Response(res=any_obj)
             elif isinstance(result, float):
                 value = DoubleValue(value=result)
-                any_obj = any_pb2.Any()
-                any_obj.Pack(value)
-                response = pb2.Response(res=any_obj)
-            elif isinstance(result, bool):
-                value = BoolValue(value=result)
                 any_obj = any_pb2.Any()
                 any_obj.Pack(value)
                 response = pb2.Response(res=any_obj)
@@ -61,14 +61,14 @@ class CallFuncServicer(pb2_grpc.CallFuncServiceServicer):
 
     def convert_arg(self, arg):
         value = None
-        if arg.Is(Int64Value.DESCRIPTOR):
-            int32_value = Int64Value()
-            arg.Unpack(int32_value)
-            value = int32_value.value
-        elif arg.Is(BoolValue.DESCRIPTOR):
+        if arg.Is(BoolValue.DESCRIPTOR):
             bool_value = BoolValue()
             arg.Unpack(bool_value)
             value = bool_value.value
+        elif arg.Is(Int64Value.DESCRIPTOR):
+            int32_value = Int64Value()
+            arg.Unpack(int32_value)
+            value = int32_value.value
         elif arg.Is(StringValue.DESCRIPTOR):
             string_value = StringValue()
             arg.Unpack(string_value)
