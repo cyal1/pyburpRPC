@@ -35,21 +35,27 @@ if tab is None:
 
 tab.start()
 
-def decrypt(i, s):
-    js_expr = f"test({i},{json.dumps(s)})"
-    print("call: ", js_expr)
+
+def encrypt(s):
+
+    js_expr = """
+
+        temp1(__REPLACEMENT__);
+
+    """.replace("__REPLACEMENT__", json.dumps(s))
+
     result = tab.call_method("Runtime.evaluate", expression = js_expr).get("result")
-    # print(result)
+
     if result.get("subtype") == "error":
         disc = result.get("description")
         print(disc)
         return disc
     r = result.get("value")
-    print(f"result{type(r)}: ", r)
+    print(s, r)
     return r
 
-decrypt(101, "askdlljglaksjdgasdg'\"adlskjgasjdg;\n;alksjg")
+print(encrypt("test"))
 
-BcryptRpcServer.expose(decrypt)
+BcryptRpcServer.expose(encrypt)
 BcryptRpcServer.run("127.0.0.1:30051")
 
