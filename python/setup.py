@@ -9,7 +9,7 @@ with open("README.md", "r", encoding='utf-8') as fh:
 
 setup(
     name="BcryptRpcServer",
-    version="0.0.4",
+    version="0.0.7",
     author="cyal1",
     packages=find_packages(),
     author_email="admin@example.com",

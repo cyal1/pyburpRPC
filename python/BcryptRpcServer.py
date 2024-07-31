@@ -4,8 +4,13 @@ from google.protobuf.wrappers_pb2 import *
 import burpextender_pb2 as pb2
 from concurrent import futures
 import burpextender_pb2_grpc as pb2_grpc
+import socket
 
 
+def is_port_in_use(host, port):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        result = sock.connect_ex((host, port))
+        return result == 0
 
 function_registry = {}
 
@@ -86,6 +91,14 @@ class CallFuncServicer(pb2_grpc.CallFuncServiceServicer):
         return value
 
 def run(bind="127.0.0.1:50051"):
+    
+    host, port = bind.split(":")
+    port = int(port)
+    
+    if is_port_in_use(host, port):
+        print(f"Port {port} is already in use.")
+        return
+
     server = grpc.server(futures.ThreadPoolExecutor())
     pb2_grpc.add_CallFuncServiceServicer_to_server(CallFuncServicer(), server)
     server.add_insecure_port(bind)  # Replace with the appropriate port
