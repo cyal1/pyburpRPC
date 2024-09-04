@@ -30,7 +30,9 @@ class CallFuncServicer(pb2_grpc.CallFuncServiceServicer):
                raise ValueError(f"No function named '{func_name}' defined.")
             result = func(*args)
 
-            if isinstance(result, str):
+            if result is None:
+                response = pb2.Response(res=any_pb2.Any())
+            elif isinstance(result, str):
                 value = StringValue(value=result)
                 any_obj = any_pb2.Any()
                 any_obj.Pack(value)
@@ -56,7 +58,7 @@ class CallFuncServicer(pb2_grpc.CallFuncServiceServicer):
                 any_obj.Pack(value)
                 response = pb2.Response(res=any_obj)
             else:
-                raise ValueError(f"Invalid result type: {type(result)}")
+                raise ValueError(f"Invalid result type: {type(result)}, only allowed str,bool,int,float,bytes")
 
             return response
         except Exception as e:
