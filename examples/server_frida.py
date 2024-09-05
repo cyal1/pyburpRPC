@@ -1,4 +1,4 @@
-import BcryptRpcServer 
+import PyBurp
 import time
 import frida
 
@@ -34,10 +34,10 @@ print(encrypt("test"))
 print(decrypt(encrypt("test")))
 
 
-BcryptRpcServer.expose(decrypt)
-BcryptRpcServer.expose(encrypt)
+PyBurp.expose(decrypt)
+PyBurp.expose(encrypt)
 
-BcryptRpcServer.run("127.0.0.1:30051")
+PyBurp.run("127.0.0.1:30051")
 
 # command = ""
 # while 1 == 1:

@@ -1,23 +1,23 @@
-# BcryptRpcServer
+# PyBurp
 
 ## python
 
 ### install
-pip install BcryptRpcServer
+pip install PyBurp
 
 ### example
 ```python
-import BcryptRpcServer 
+import PyBurp 
 
 def test(a,b,c,d,e):
     print(a,type(a),b,type(b),c,type(c),d,type(d),e,type(e))
     return b'asdf'
 
 
-@BcryptRpcServer.expose
+@PyBurp.expose
 def test2():
     return 'xxx'
-    
-BcryptRpcServer.expose(test)
-BcryptRpcServer.run("127.0.0.1:30051")
+
+PyBurp.expose(test)
+PyBurp.run("127.0.0.1:30051")
 ```

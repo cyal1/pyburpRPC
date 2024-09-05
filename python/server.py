@@ -1,7 +1,7 @@
-import BcryptRpcServer
+import PyBurp
 
 def test():
 	return None
 
-BcryptRpcServer.expose(test)
-BcryptRpcServer.run("127.0.0.1:30051")
+PyBurp.expose(test)
+PyBurp.run("127.0.0.1:30051")

@@ -1,30 +1,30 @@
-# BcryptRpcServer
+# PyBurp
 
 ## install 
-pip install BcryptRpcServer
+pip install PyBurp
 
 ## Basic
 ```python
-import BcryptRpcServer 
+import PyBurp 
 
 def test(a,b,c,d,e):
     print(a,type(a),b,type(b),c,type(c),d,type(d),e,type(e))
     return b'asdf'
 
 
-@BcryptRpcServer.expose # some thing wrong. not always work
+@PyBurp.expose # some thing wrong. not always work
 def test2():
     return 'xxx'
-    
-BcryptRpcServer.expose(test) # recommend
-BcryptRpcServer.run("127.0.0.1:30051")
+
+PyBurp.expose(test) # recommend
+PyBurp.run("127.0.0.1:30051")
 ```
 
 
 ## Frida
 
 ```python
-import BcryptRpcServer 
+import PyBurp 
 import time
 import frida
 
@@ -58,10 +58,10 @@ script.load()
 print(encrypt("test"))
 print(decrypt(encrypt("test")))
 
-BcryptRpcServer.expose(decrypt)
-BcryptRpcServer.expose(encrypt)
+PyBurp.expose(decrypt)
+PyBurp.expose(encrypt)
 
-BcryptRpcServer.run("127.0.0.1:30051")
+PyBurp.run("127.0.0.1:30051")
 
 ```
 
