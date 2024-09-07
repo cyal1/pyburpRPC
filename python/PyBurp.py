@@ -104,7 +104,7 @@ def run(bind="127.0.0.1:50051"):
     server = grpc.server(futures.ThreadPoolExecutor())
     pb2_grpc.add_CallFuncServiceServicer_to_server(CallFuncServicer(), server)
     server.add_insecure_port(bind)  # Replace with the appropriate port
-    print(f"PyBurp listening on {bind}")
+    print(f"pyburp listening on {bind}")
     server.start()
     server.wait_for_termination()
 

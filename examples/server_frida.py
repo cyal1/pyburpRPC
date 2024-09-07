@@ -1,4 +1,4 @@
-import PyBurp
+import pyburp
 import time
 import frida
 
@@ -34,10 +34,10 @@ print(encrypt("test"))
 print(decrypt(encrypt("test")))
 
 
-PyBurp.expose(decrypt)
-PyBurp.expose(encrypt)
+pyburp.expose(decrypt)
+pyburp.expose(encrypt)
 
-PyBurp.run("127.0.0.1:30051")
+pyburp.run("127.0.0.1:30051")
 
 # command = ""
 # while 1 == 1:

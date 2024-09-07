@@ -1,30 +1,30 @@
-# PyBurp
+# pyburpRPC
 
 ## install 
-pip install PyBurp
+pip install pyburp
 
 ## Basic
 ```python
-import PyBurp 
+import pyburp 
 
 def test(a,b,c,d,e):
     print(a,type(a),b,type(b),c,type(c),d,type(d),e,type(e))
     return b'asdf'
 
 
-@PyBurp.expose # some thing wrong. not always work
+@pyburp.expose # some thing wrong. not always work
 def test2():
     return 'xxx'
 
-PyBurp.expose(test) # recommend
-PyBurp.run("127.0.0.1:30051")
+pyburp.expose(test) # recommend
+pyburp.run("127.0.0.1:30051")
 ```
 
 
 ## Frida
 
 ```python
-import PyBurp 
+import pyburp 
 import time
 import frida
 
@@ -58,10 +58,10 @@ script.load()
 print(encrypt("test"))
 print(decrypt(encrypt("test")))
 
-PyBurp.expose(decrypt)
-PyBurp.expose(encrypt)
+pyburp.expose(decrypt)
+pyburp.expose(encrypt)
 
-PyBurp.run("127.0.0.1:30051")
+pyburp.run("127.0.0.1:30051")
 
 ```
 

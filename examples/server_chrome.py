@@ -1,7 +1,7 @@
 from pychrome import Browser
 from pychrome.cli import JSONTabEncoder
 import json
-import PyBurp
+import pyburp
 
 def getTabById(tabs, tab_id):
     for tab in tabs:
@@ -56,6 +56,6 @@ def encrypt(s):
 
 print(encrypt("test"))
 
-PyBurp.expose(encrypt)
-PyBurp.run("127.0.0.1:30051")
+pyburp.expose(encrypt)
+pyburp.run("127.0.0.1:30051")
 
