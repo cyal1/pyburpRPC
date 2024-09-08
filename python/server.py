@@ -1,6 +1,7 @@
 import pyburp
 
-def test():
+def test(s):
+	print(s, type(s))
 	return None
 
 pyburp.expose(test)

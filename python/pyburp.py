@@ -12,10 +12,13 @@ def is_port_in_use(host, port):
         result = sock.connect_ex((host, port))
         return result == 0
 
+
 function_registry = {}
+
 
 def expose(func):
     function_registry[func.__name__] = func
+
 
 class CallFuncServicer(pb2_grpc.CallFuncServiceServicer):
     def CallFunc(self, request, context):
@@ -66,9 +69,12 @@ class CallFuncServicer(pb2_grpc.CallFuncServiceServicer):
             context.set_details(str(e))
             return pb2.Response()
 
+
     def convert_arg(self, arg):
         value = None
-        if arg.Is(BoolValue.DESCRIPTOR):
+        if arg.ByteSize() == 0:
+            value = None
+        elif arg.Is(BoolValue.DESCRIPTOR):
             bool_value = BoolValue()
             arg.Unpack(bool_value)
             value = bool_value.value
@@ -91,6 +97,7 @@ class CallFuncServicer(pb2_grpc.CallFuncServiceServicer):
         else:
             value = arg
         return value
+
 
 def run(bind="127.0.0.1:50051"):
     
